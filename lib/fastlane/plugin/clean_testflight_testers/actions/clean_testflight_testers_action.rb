@@ -35,7 +35,7 @@ module Fastlane
           else
             # We don't really have a good way to detect whether the user is active unfortunately
             # So we can just delete users that had no sessions
-            if days_since_status_change > params[:days_of_inactivity] && tester_metrics.session_count == 0
+            if days_since_status_change > params[:days_of_inactivity] && tester_metrics.session_count < 2
               # User had no sessions in the last e.g. 30 days, let's get rid of them
               remove_tester(current_tester, spaceship_app, params[:dry_run])
               counter += 1
